@@ -3,8 +3,7 @@ import CodeEditor from '../Components/CodeEditor';
 import { Link } from 'react-router-dom';
 
 const Exp5 = () => {
-    const codeSnippet = `
-import numpy as np
+    const codeSnippet = `import numpy as np
 import matplotlib.pyplot as plt
 
 def carrier_aggregation_simulation(bandwidth_per_carrier=20, num_carriers=3, spectral_efficiency=4, metric_type="Throughput"):

@@ -3,8 +3,7 @@ import CodeEditor from '../Components/CodeEditor';
 import { Link } from 'react-router-dom';
 
 const Exp1 = () => {
-    const codeSnippet = `
-import numpy as np
+    const codeSnippet = `import numpy as np
 import matplotlib.pyplot as plt
     
 def network_slicing_performance(slice_type="eMBB", metric_type="Throughput", traffic_start=10, traffic_end=100):

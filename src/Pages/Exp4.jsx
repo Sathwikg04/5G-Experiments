@@ -3,8 +3,7 @@ import CodeEditor from '../Components/CodeEditor';
 import { Link } from 'react-router-dom';
 
 const Exp4 = () => {
-  const codeSnippet = `
-import numpy as np
+  const codeSnippet = `import numpy as np
 import matplotlib.pyplot as plt
 
 def beamforming_simulation(snr_db=10, num_antennas=64, num_users=8, plot_type="Users"):

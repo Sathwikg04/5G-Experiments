@@ -20,7 +20,7 @@ const CodeEditor = ({ codeSnippet }) => {
   return (<div className="flex flex-row h-screen">
     <div className="w-1/2 p-4 shadow-md border-r">
       <div className="rounded-lg p-4 border h-full">
-        <div className="mb-4 z-10">
+        <div className="mb-4 z-10 relative">
           <LanguageSelector language={language} onSelect={onSelect} />
         </div>
         <div className="rounded-lg overflow-hidden border">

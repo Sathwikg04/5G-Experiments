@@ -3,8 +3,7 @@ import CodeEditor from '../Components/CodeEditor';
 import { Link } from 'react-router-dom';
 
 const Exp3 = () => {
-  const codeSnippet = `
-import numpy as np
+  const codeSnippet = `import numpy as np
 import matplotlib.pyplot as plt
 
 def mimo_capacity_simulation(snr_db=10, max_antennas=64, max_users=8, plot_type="Antennas"):

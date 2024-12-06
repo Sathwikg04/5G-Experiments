@@ -3,8 +3,7 @@ import CodeEditor from '../Components/CodeEditor';
 import { Link } from 'react-router-dom';
 
 const Exp2 = () => {
-    const codeSnippet = `
-import numpy as np
+    const codeSnippet = `import numpy as np
 import matplotlib.pyplot as plt
 
 def mmwave_propagation_simulation(environment="Urban", frequency=28, distance=100, loss_type="Path Loss"):
