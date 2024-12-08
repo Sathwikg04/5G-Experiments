@@ -3,29 +3,6 @@ import CodeEditor from '../Components/CodeEditor';
 import { Link } from 'react-router-dom';
 
 const Exp2 = () => {
-    const codeSnippet = `import numpy as np
-import matplotlib.pyplot as plt
-
-def mmwave_propagation_simulation(environment="Urban", frequency=28, distance=100, loss_type="Path Loss"):
-    frequency_hz = frequency * 1e9  # Convert GHz to Hz
-    if loss_type == "Path Loss":
-        distances = np.linspace(1, distance, 100)
-        if environment == "Urban":
-            path_loss = 32.4 + 20 * np.log10(distances) + 20 * np.log10(frequency_hz / 1e9)
-        elif environment == "Indoor":
-            path_loss = 20 * np.log10(distances) + 20 * np.log10(frequency_hz / 1e9) + 20
-        plt.plot(distances, path_loss, '-o')
-        plt.xlabel("Distance (m)")
-        plt.ylabel("Path Loss (dB)")
-        plt.title("Path Loss over Distance")
-    
-    plt.grid(True)
-    plt.show()
-
-# Example usage:
-mmwave_propagation_simulation(environment="Urban", frequency=28, distance=100)
-    `;
-
     return (
         <div className="min-h-screen p-8">
             <div className="mb-6">
@@ -43,7 +20,7 @@ mmwave_propagation_simulation(environment="Urban", frequency=28, distance=100)
                     Models the propagation characteristics of millimeter-wave signals, considering factors like path loss, blockages, and reflection in different environments.
                 </p>
             </div>
-            <CodeEditor codeSnippet={codeSnippet} />
+            <CodeEditor />
         </div>
     );
 }

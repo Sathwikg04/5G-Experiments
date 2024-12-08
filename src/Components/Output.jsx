@@ -4,7 +4,6 @@ import { loadPyodide } from 'pyodide';
 
 const Output = ({ editorRef, language }) => {
   const [output, setOutput] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
 
   const [pyodide, setPyodide] = useState(null);
@@ -26,7 +25,7 @@ const Output = ({ editorRef, language }) => {
     const sourceCode = editorRef.current.getValue();
     if (!sourceCode) return;
     try {
-      if (pyodide) {
+      if (pyodide && language==='python') {
         try {
           const fullCode = `
 import io
@@ -44,29 +43,25 @@ base64_image = base64.b64encode(buf.getvalue()).decode('utf-8')
 plt.close()
 base64_image
       `;
-          setIsLoading(true);
           const result = await pyodide.runPythonAsync(fullCode);
           setPlotSrc(`data:image/png;base64,${result}`);
         } catch (error) {
           setPlotSrc(null);
         }
       } else {
-        setIsLoading(true);
         const { run: result } = await executeCode(language, sourceCode);
         setOutput(result.output.split("\n"));
         result.stderr ? setIsError(true) : setIsError(false);
       }
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsLoading(false);
     }
   };
 
   return (
     <div>
       <p className='pb-2'>Output:</p>
-      <button onClick={runCode} isLoading={isLoading} className="px-4 py-2 w-32 text-white bg-teal-600 rounded hover:bg-teal-700 mb-4">Run Code</button>
+      <button onClick={runCode} className="px-4 py-2 w-32 text-white bg-teal-600 rounded hover:bg-teal-700 mb-4">Run Code</button>
       <div className='p-2 border rounded h-3/4'>
         {output ? (<>
           {output.map((line, i) => <p key={i}>{line}</p>)}

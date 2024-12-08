@@ -1,12 +1,20 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Editor } from '@monaco-editor/react'
 import LanguageSelector from './LanguageSelector';
 import Output from './Output';
+import { CODE_SNIPPETS, DEFAULT } from '../constants';
 
-const CodeEditor = ({ codeSnippet }) => {
+const CodeEditor = () => {
   const editorRef = useRef();
   const [value, setValue] = useState('');
   const [language, setLanguage] = useState('python');
+
+  const pathname = window.location.pathname;
+  const [, id] = pathname.split('/');
+
+  useEffect(() => {
+    setValue(CODE_SNIPPETS[id]);
+  },[])
 
   const onMount = (editor) => {
     editorRef.current = editor;
@@ -15,6 +23,14 @@ const CodeEditor = ({ codeSnippet }) => {
 
   const onSelect = (language) => {
     setLanguage(language);
+    switch (language) {
+      case 'python':
+        setValue(CODE_SNIPPETS[id])
+        break;
+      default:
+        setValue(DEFAULT[language])
+        break;
+    } 
   }
 
   return (<div className="flex flex-row h-screen">
@@ -27,8 +43,8 @@ const CodeEditor = ({ codeSnippet }) => {
           <Editor
             height="75vh"
             theme="vs-dark"
-            defaultLanguage="python"
-            defaultValue={codeSnippet}
+            defaultLanguage='python'
+            defaultValue={value}
             onMount={onMount}
             value={value}
             onChange={(value) => setValue(value)}
